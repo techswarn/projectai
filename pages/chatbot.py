@@ -41,8 +41,7 @@ if docs:
         
         if user_input:
             ############################ Append the user input to the chat ############################
-            if 'messages' not in st.session_state:
-                st.session_state.messages.append({"role": "user", "content": user_input})
+            st.session_state.messages.append({"role": "user", "content": user_input})
 
             #################### Rewrite the user query for better input to the LLM ###################
             re_written_query = rewrite_user_query(user_input)
