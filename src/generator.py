@@ -10,7 +10,7 @@ from langchain_huggingface.llms import HuggingFacePipeline
 from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
 
 def llm_instance():
-    model_id = "meta-llama/Llama-3.1-8B-Instruct"
+    model_id = "meta-llama/Llama-3.3-70B-Instruct"
     tokenizer = AutoTokenizer.from_pretrained(model_id)
     model = AutoModelForCausalLM.from_pretrained(model_id)
     pipe = pipeline("text-generation", model=model, tokenizer=tokenizer, max_new_tokens=200)
