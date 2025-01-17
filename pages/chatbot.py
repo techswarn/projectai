@@ -32,7 +32,7 @@ if docs:
         ###############################################################################################
    
         vector_s = build_vector_store_fromurl(docs)
-        
+        print("===============vector_s==================")
         ######################### Build the vector store to store the vectors #########################
         #vector_store = build_vector_store(user_manuel_content)
 
