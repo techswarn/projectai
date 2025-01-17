@@ -14,9 +14,10 @@ def rewrite_user_query(user_query):
         st.markdown(user_query)
 
     ####################################### Define the LLM parameters #######################################
-    groq_api_key = os.environ["GROQ_API_KEY"]
-    model_name = "llama3-8b-8192"
-    llm = ChatGroq(temperature=0.5, groq_api_key=groq_api_key, model_name=model_name)
+    # groq_api_key = os.environ["GROQ_API_KEY"]
+    # model_name = "llama3-8b-8192"
+    # llm = ChatGroq(temperature=0.5, groq_api_key=groq_api_key, model_name=model_name)
+    llm = llm_instance()
 
     ######################## Define the re-writing query template with few shot examples ####################
     template = f"""Provide three better search queries for the web search engine to answer the given query.
