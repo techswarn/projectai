@@ -2,13 +2,14 @@ import streamlit as st
 from src.load_file import load_file, load_url_content
 from src.rewrite_query import rewrite_user_query
 from src.retriever import build_vector_store, retrieve_chunks_from_vector_store, retrieve_history, build_vector_store_fromurl, retrieve_chunks
-from src.generator import generate_answer
+from src.generator import generate_answer, llm_instance
 
 # Load the user manuel file
 user_manuel_content = load_file()
 
 # If load is successful
 if user_manuel_content:
+    llm = llm_instance()
     try:
         ###################################### Display the title ######################################
         st.title(":rainbow[TOYOTA HIGHLANDER INTERACTIVE BOT]")
@@ -36,7 +37,7 @@ if user_manuel_content:
 
         ######################### Check and display any previous chat history #########################
         history = retrieve_history()
-
+        
         if user_input:
             ############################ Append the user input to the chat ############################
             st.session_state.messages.append({"role": "user", "content": user_input})
@@ -49,7 +50,7 @@ if user_manuel_content:
             #relevant_chunks = retrieve_chunks_from_vector_store(vector_store, re_written_query)
 
             ######################### Generate an final answer using the LLM ##########################
-            answer = generate_answer(re_written_query, relevant_chunks)
+            answer = generate_answer(re_written_query, relevant_chunks, llm)
 
             ##################### Display the answer with the relevant information ####################
             col_left, col_right = st.columns(2)

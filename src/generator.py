@@ -5,10 +5,22 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough, RunnableParallel
 from langchain_core.output_parsers import StrOutputParser
 
+#transformer pipeline 
+from langchain_huggingface.llms import HuggingFacePipeline
+from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
+
+def llm_instance():
+    model_id = "meta-llama/Meta-Llama-3-8B"
+    tokenizer = AutoTokenizer.from_pretrained(model_id)
+    model = AutoModelForCausalLM.from_pretrained(model_id)
+    pipe = pipeline("text-generation", model=model, tokenizer=tokenizer, max_new_tokens=200)
+    llm = HuggingFacePipeline(pipeline=pipe)
+    return llm
+
 ###########################################################################################################
 ########################### Function for generating an answer using the LLM ###############################
 ###########################################################################################################
-def generate_answer(re_written_query, relevant_chunks):
+def generate_answer(re_written_query, relevant_chunks, llm):
     ######################################### Define the LLM parameters #########################################
     groq_api_key = os.environ["GROQ_API_KEY"]
     print(groq_api_key)
@@ -17,7 +29,7 @@ def generate_answer(re_written_query, relevant_chunks):
         return None
 
     model_name = "llama-3.1-70b-versatile"
-    llm = ChatGroq(temperature=0.5, groq_api_key=groq_api_key, model_name=model_name)
+  #  llm = ChatGroq(temperature=0.5, groq_api_key=groq_api_key, model_name=model_name)
 
     ########################################## Fetch the chat history ##########################################
     history = "\n".join([f"{message['role']}: {message['content']}" for message in st.session_state.messages])
