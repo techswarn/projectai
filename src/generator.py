@@ -22,11 +22,11 @@ def llm_instance():
 ###########################################################################################################
 def generate_answer(re_written_query, relevant_chunks, llm):
     ######################################### Define the LLM parameters #########################################
-    groq_api_key = os.environ["GROQ_API_KEY"]
-    print(groq_api_key)
-    if not groq_api_key:
-        st.error("GROQ_API_KEY not found in environment variables.")
-        return None
+    # groq_api_key = os.environ["GROQ_API_KEY"]
+    # print(groq_api_key)
+    # if not groq_api_key:
+    #     st.error("GROQ_API_KEY not found in environment variables.")
+    #     return None
 
     model_name = "llama-3.1-70b-versatile"
   #  llm = ChatGroq(temperature=0.5, groq_api_key=groq_api_key, model_name=model_name)
