@@ -24,23 +24,24 @@ def load_pdf_content(user_manuel_url):
 
 def load_url_content():
     # Load the web page content
-    loader = WebBaseLoader(["https://docs.digitalocean.com/products/app-platform/", "https://docs.digitalocean.com/products/app-platform/getting-started/quickstart/"
-                        "https://docs.digitalocean.com/products/app-platform/how-to/create-apps/", "https://docs.digitalocean.com/products/app-platform/how-to/deploy-from-container-images/", "https://docs.digitalocean.com/products/app-platform/how-to/deploy-from-monorepo/",
-                        "https://docs.digitalocean.com/products/app-platform/how-to/scale-app/", "https://docs.digitalocean.com/products/app-platform/how-to/add-deploy-do-button/", "https://docs.digitalocean.com/products/app-platform/how-to/manage-components/", "https://docs.digitalocean.com/products/app-platform/how-to/manage-services/", "https://docs.digitalocean.com/products/app-platform/how-to/manage-jobs/", "https://docs.digitalocean.com/products/app-platform/how-to/manage-workers/",
-                        "https://docs.digitalocean.com/products/app-platform/how-to/manage-static-sites/", "https://docs.digitalocean.com/products/app-platform/how-to/manage-functions/", "https://docs.digitalocean.com/products/app-platform/how-to/manage-data-storage/",
-                        "https://docs.digitalocean.com/products/app-platform/how-to/manage-databases/", "https://docs.digitalocean.com/products/app-platform/details/limits/", "https://docs.digitalocean.com/products/app-platform/how-to/build-run-commands/", "https://docs.digitalocean.com/products/app-platform/how-to/use-environment-variables/"
-                        "https://docs.digitalocean.com/products/app-platform/how-to/cache-content/", "https://docs.digitalocean.com/products/app-platform/how-to/change-region/", "https://docs.digitalocean.com/products/app-platform/how-to/change-stack/",
-                        "https://docs.digitalocean.com/products/app-platform/how-to/upgrade-buildpacks/", "https://docs.digitalocean.com/products/app-platform/how-to/manage-time-zone/", "https://docs.digitalocean.com/products/app-platform/how-to/add-ip-address/",
-                        "https://docs.digitalocean.com/products/app-platform/how-to/manage-domains/", "https://docs.digitalocean.com/products/app-platform/how-to/configure-cors-policies/", "https://docs.digitalocean.com/products/app-platform/how-to/manage-internal-routing/",
-                        "https://docs.digitalocean.com/products/app-platform/how-to/url-rewrites/", "https://docs.digitalocean.com/products/app-platform/how-to/manage-health-checks/", "https://docs.digitalocean.com/products/app-platform/how-to/view-logs/", "https://docs.digitalocean.com/products/app-platform/how-to/forward-logs/",
-                        "https://docs.digitalocean.com/products/app-platform/how-to/create-alerts/", "https://docs.digitalocean.com/products/app-platform/how-to/view-insights/",
-                        "https://docs.digitalocean.com/products/app-platform/how-to/manage-deployments/", "https://docs.digitalocean.com/products/app-platform/how-to/update-app-spec/", "https://docs.digitalocean.com/products/app-platform/how-to/manage-source-repo/", "https://docs.digitalocean.com/products/app-platform/how-to/build-locally/", "https://docs.digitalocean.com/products/app-platform/how-to/destroy-app/"])
+    with st.spinner('Loading PDF content. Please wait around a minute...'):
+        loader = WebBaseLoader(["https://docs.digitalocean.com/products/app-platform/", "https://docs.digitalocean.com/products/app-platform/getting-started/quickstart/"
+                            "https://docs.digitalocean.com/products/app-platform/how-to/create-apps/", "https://docs.digitalocean.com/products/app-platform/how-to/deploy-from-container-images/", "https://docs.digitalocean.com/products/app-platform/how-to/deploy-from-monorepo/",
+                            "https://docs.digitalocean.com/products/app-platform/how-to/scale-app/", "https://docs.digitalocean.com/products/app-platform/how-to/add-deploy-do-button/", "https://docs.digitalocean.com/products/app-platform/how-to/manage-components/", "https://docs.digitalocean.com/products/app-platform/how-to/manage-services/", "https://docs.digitalocean.com/products/app-platform/how-to/manage-jobs/", "https://docs.digitalocean.com/products/app-platform/how-to/manage-workers/",
+                            "https://docs.digitalocean.com/products/app-platform/how-to/manage-static-sites/", "https://docs.digitalocean.com/products/app-platform/how-to/manage-functions/", "https://docs.digitalocean.com/products/app-platform/how-to/manage-data-storage/",
+                            "https://docs.digitalocean.com/products/app-platform/how-to/manage-databases/", "https://docs.digitalocean.com/products/app-platform/details/limits/", "https://docs.digitalocean.com/products/app-platform/how-to/build-run-commands/", "https://docs.digitalocean.com/products/app-platform/how-to/use-environment-variables/"
+                            "https://docs.digitalocean.com/products/app-platform/how-to/cache-content/", "https://docs.digitalocean.com/products/app-platform/how-to/change-region/", "https://docs.digitalocean.com/products/app-platform/how-to/change-stack/",
+                            "https://docs.digitalocean.com/products/app-platform/how-to/upgrade-buildpacks/", "https://docs.digitalocean.com/products/app-platform/how-to/manage-time-zone/", "https://docs.digitalocean.com/products/app-platform/how-to/add-ip-address/",
+                            "https://docs.digitalocean.com/products/app-platform/how-to/manage-domains/", "https://docs.digitalocean.com/products/app-platform/how-to/configure-cors-policies/", "https://docs.digitalocean.com/products/app-platform/how-to/manage-internal-routing/",
+                            "https://docs.digitalocean.com/products/app-platform/how-to/url-rewrites/", "https://docs.digitalocean.com/products/app-platform/how-to/manage-health-checks/", "https://docs.digitalocean.com/products/app-platform/how-to/view-logs/", "https://docs.digitalocean.com/products/app-platform/how-to/forward-logs/",
+                            "https://docs.digitalocean.com/products/app-platform/how-to/create-alerts/", "https://docs.digitalocean.com/products/app-platform/how-to/view-insights/",
+                            "https://docs.digitalocean.com/products/app-platform/how-to/manage-deployments/", "https://docs.digitalocean.com/products/app-platform/how-to/update-app-spec/", "https://docs.digitalocean.com/products/app-platform/how-to/manage-source-repo/", "https://docs.digitalocean.com/products/app-platform/how-to/build-locally/", "https://docs.digitalocean.com/products/app-platform/how-to/destroy-app/"])
 
-    loader.requests_per_second = 1
-    docs = loader.load()
-    
-    
-    return docs
+        loader.requests_per_second = 1
+        docs = loader.load()
+        
+        
+        return docs
 
 ###########################################################################################################
 ########################### Function for displaying the PDF file and the images ###########################
