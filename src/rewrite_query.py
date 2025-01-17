@@ -3,7 +3,15 @@ import streamlit as st
 from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-from generator import generate_answer, llm_instance
+
+def llm_instance():
+    model_id = "meta-llama/Llama-3.1-8B-Instruct"
+    tokenizer = AutoTokenizer.from_pretrained(model_id)
+    model = AutoModelForCausalLM.from_pretrained(model_id)
+    pipe = pipeline("text-generation", model=model, tokenizer=tokenizer, max_new_tokens=200)
+    llm = HuggingFacePipeline(pipeline=pipe)
+    return llm
+
 ##############################################################################################################
 ################################### Function for rewriting the user query ####################################
 ##############################################################################################################
