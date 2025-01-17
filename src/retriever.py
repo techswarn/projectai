@@ -56,8 +56,7 @@ def build_vector_store_fromurl(content):
     if content:
         # If the vector store is not already present in the session state
         
- #       if not st.session_state.vector_store:
-        if 'vector_store' not in st.session_state:
+        if not st.session_state.vector_store:
             with st.spinner(text=":red[Please wait while we fetch the information...]"):
                 embeddings = HuggingFaceEmbeddings()
                 text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=30)
