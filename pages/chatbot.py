@@ -6,10 +6,11 @@ from src.generator import generate_answer, llm_instance
 
 # Load the user manuel file
 #user_manuel_content = load_file()
+llm = llm_instance()
 docs = load_url_content()
 # If load is successful
 if docs:
-    llm = llm_instance()
+    print("Document loaded successfully")
     try:
         ###################################### Display the title ######################################
         st.title(":rainbow[App guide tools]")
