@@ -5,14 +5,14 @@ from src.retriever import build_vector_store, retrieve_chunks_from_vector_store,
 from src.generator import generate_answer, llm_instance
 
 # Load the user manuel file
-user_manuel_content = load_file()
-
+#user_manuel_content = load_file()
+docs = load_url_content()
 # If load is successful
-if user_manuel_content:
+if docs:
     llm = llm_instance()
     try:
         ###################################### Display the title ######################################
-        st.title(":rainbow[TOYOTA HIGHLANDER INTERACTIVE BOT]")
+        st.title(":rainbow[App guide tools]")
         st.write('')
 
         ####################### Set a clear conversation button on the side menu ######################
@@ -25,11 +25,11 @@ if user_manuel_content:
 
         ############################### Display the chatbot input space ###############################
         user_input = st.chat_input(
-            'Ask me a question about the Toyota Highlander...',
+            'Ask me a question about the Digitalocean app platform...',
             max_chars=1500,
             key='user_input')
         ###############################################################################################
-        docs = load_url_content()
+   
         vector_s = build_vector_store_fromurl(docs)
         
         ######################### Build the vector store to store the vectors #########################

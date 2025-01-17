@@ -15,9 +15,9 @@ def display_intro():
     col_left, col_right = st.columns(2)
 
     with col_left:
-        st.title(":rainbow[TOYOTA USER MANUEL]")
+        st.title(":rainbow[Chat bot]")
         st.write('')
-        st.subheader(":grey[Got questions about the Toyota Highlander?]")
+        st.subheader(":grey[Got questions about the App platform?]")
         st.write(":grey[Interact with our chatbot by using the side menu...]")
 
     with col_right:
