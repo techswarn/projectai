@@ -159,7 +159,7 @@ def generate_answer(re_written_query, relevant_chunks, llm):
                                          "history": history,
                                          "context": relevant_chunks}):
                     all_results += res
-                    print(all_results[Answer])
+                    print(all_results)
                     message_placeholder.markdown(all_results)
 
     #################################### Save the output in the session state ####################################
