@@ -33,7 +33,7 @@ if docs:
         vector_s = build_vector_store_fromurl(docs)
         
         ######################### Build the vector store to store the vectors #########################
-        vector_store = build_vector_store(user_manuel_content)
+        #vector_store = build_vector_store(user_manuel_content)
 
         ######################### Check and display any previous chat history #########################
         history = retrieve_history()
