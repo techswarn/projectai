@@ -51,8 +51,6 @@ def load_file():
 
     with st.spinner('Loading PDF content. Please wait around a minute...'):
         content = load_pdf_content(user_manuel_url)
-        docs = load_url_content()
-        print(docs[0])
 
     if content:
 
