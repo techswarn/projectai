@@ -23,12 +23,64 @@ def generate_answer(re_written_query, relevant_chunks):
     history = "\n".join([f"{message['role']}: {message['content']}" for message in st.session_state.messages])
 
     ############ Define the prompt and prompt template using Chain of Thought prompting technique ##############
+    # template = """
+    # <Instructions>
+    
+    # - You are a customer-friendly chatbot designed to assist car users
+    #   with any questions they have about their car by referring to the
+    #   Toyota User Manual.
+    # - Provide clear and consice answers, and if necessary, explain the
+    #   steps or details mentioned in the manual in bullet points.
+    # - If you don't the answer, then please apologize to the user and ask
+    #   the user to contact customer support.
+    # - Always reply in a polite manner.
+    
+    # </Instructions>
+    
+    # <ChainOfThought>
+    
+    # When answering, think step by step. Consider the user's question,
+    # the relevant history of the conversation, and the context provided
+    # by the user manual. Use this information to generate a logical,
+    # coherent, and detailed response.
+    
+    # </ChainOfThought>
+    
+    # <Examples>
+    
+    # Example 1:
+    # <UserQuestion> How do I adjust the seatbelt height in my Toyota Highlander? </UserQuestion>
+    # <History> User previously asked about seatbelt safety. </History>
+    # <Context> The manual explains the steps for adjusting the seatbelt height, including safety warnings. </Context>
+    # <Answer> To adjust the seatbelt height in your Toyota Highlander, press the release button and move the seatbelt anchor up or down until it clicks into place. Ensure that the shoulder belt is positioned across the center of your shoulder to maximize safety... </Answer>
+    
+    # Example 2:
+    # <UserQuestion> What does the warning light with an exclamation mark mean? </UserQuestion>
+    # <History> No prior related questions. </History>
+    # <Context> The manual indicates that a warning light with an exclamation mark is related to the tire pressure monitoring system or other critical alerts. </Context>
+    # <Answer> The warning light with an exclamation mark in your Toyota Highlander typically indicates a tire pressure issue or another critical alert. It’s recommended to check your tire pressure and ensure they are properly inflated. If the issue persists, refer to the vehicle status section of your manual for further instructions... </Answer>
+    
+    # </Examples>
+    
+    # <Prompt>
+    
+    # <UserQuestion> {question} </UserQuestion>
+    # <History> {history} </History>
+    # <Context> {context} </Context>
+    
+    # </Prompt>
+    
+    # <Answer>
+    # """
+
+
+
     template = """
     <Instructions>
     
-    - You are a customer-friendly chatbot designed to assist car users
-      with any questions they have about their car by referring to the
-      Toyota User Manual.
+    - You are a customer-friendly chatbot designed to assist users
+      with any questions they have about their deployment on App platform by referring to the
+      the Documentation.
     - Provide clear and consice answers, and if necessary, explain the
       steps or details mentioned in the manual in bullet points.
     - If you don't the answer, then please apologize to the user and ask
@@ -49,16 +101,16 @@ def generate_answer(re_written_query, relevant_chunks):
     <Examples>
     
     Example 1:
-    <UserQuestion> How do I adjust the seatbelt height in my Toyota Highlander? </UserQuestion>
-    <History> User previously asked about seatbelt safety. </History>
-    <Context> The manual explains the steps for adjusting the seatbelt height, including safety warnings. </Context>
-    <Answer> To adjust the seatbelt height in your Toyota Highlander, press the release button and move the seatbelt anchor up or down until it clicks into place. Ensure that the shoulder belt is positioned across the center of your shoulder to maximize safety... </Answer>
+    <UserQuestion> What are sources from which I can deploy apps to App platform? </UserQuestion>
+    <History> User previously creating apps on App platform. </History>
+    <Context> The documentation explains the steps for creating apps from sources like github, dockerhub. </Context>
+    <Answer> Apps can be deployed or creating from GitHub, GitLab, Bitbucket, DOCR, Docker Hub, GitHub Container Registry</Answer>
     
     Example 2:
-    <UserQuestion> What does the warning light with an exclamation mark mean? </UserQuestion>
+    <UserQuestion> What are the different types of components in the App? </UserQuestion>
     <History> No prior related questions. </History>
-    <Context> The manual indicates that a warning light with an exclamation mark is related to the tire pressure monitoring system or other critical alerts. </Context>
-    <Answer> The warning light with an exclamation mark in your Toyota Highlander typically indicates a tire pressure issue or another critical alert. It’s recommended to check your tire pressure and ensure they are properly inflated. If the issue persists, refer to the vehicle status section of your manual for further instructions... </Answer>
+    <Context> The documentation indicates that the App has services, workers, and jobs. </Context>
+    <Answer> Your App can have services, workers, jobs, or static sites. Web services, workers, and jobs are built from source code repositories or container images and are hosted in containers. Static sites are built from a directory of static files and hosted on DigitalOcean’s CDN </Answer>
     
     </Examples>
     
@@ -72,6 +124,7 @@ def generate_answer(re_written_query, relevant_chunks):
     
     <Answer>
     """
+
     prompt = ChatPromptTemplate.from_template(template)
 
     ####################################### Define the chain constructor ########################################

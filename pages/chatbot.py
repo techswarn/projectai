@@ -1,7 +1,7 @@
 import streamlit as st
-from src.load_file import load_file
+from src.load_file import load_file, load_url_content
 from src.rewrite_query import rewrite_user_query
-from src.retriever import build_vector_store, retrieve_chunks_from_vector_store, retrieve_history
+from src.retriever import build_vector_store, retrieve_chunks_from_vector_store, retrieve_history, build_vector_store_fromurl, retrieve_chunks
 from src.generator import generate_answer
 
 # Load the user manuel file
@@ -27,7 +27,10 @@ if user_manuel_content:
             'Ask me a question about the Toyota Highlander...',
             max_chars=1500,
             key='user_input')
-
+        ###############################################################################################
+        docs = load_url_content()
+        vector_s = build_vector_store_fromurl(docs)
+        
         ######################### Build the vector store to store the vectors #########################
         vector_store = build_vector_store(user_manuel_content)
 
@@ -42,7 +45,8 @@ if user_manuel_content:
             re_written_query = rewrite_user_query(user_input)
 
             ###################### retrieve the relevant chunks from teh database #####################
-            relevant_chunks = retrieve_chunks_from_vector_store(vector_store, re_written_query)
+            relevant_chunks = retrieve_chunks(vector_s, re_written_query)
+            #relevant_chunks = retrieve_chunks_from_vector_store(vector_store, re_written_query)
 
             ######################### Generate an final answer using the LLM ##########################
             answer = generate_answer(re_written_query, relevant_chunks)

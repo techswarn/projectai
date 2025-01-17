@@ -4,6 +4,7 @@ import streamlit as st
 from tempfile import NamedTemporaryFile
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import SKLearnVectorStore
+from langchain_text_splitters import CharacterTextSplitter
 
 # Suppress Warnings
 import warnings
@@ -48,6 +49,34 @@ def build_vector_store(content):
 
     else:
         st.error('No content was found...')
+
+
+def build_vector_store_fromurl(content):
+    
+    if content:
+        # If the vector store is not already present in the session state
+        if not st.session_state.vector_store:
+            with st.spinner(text=":red[Please wait while we fetch the information...]"):
+                embeddings = HuggingFaceEmbeddings()
+                text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
+                docs = text_splitter.split_documents(content)
+                vector_store = SKLearnVectorStore.from_documents(
+                    documents=docs,
+                    embedding=embeddings,
+                )
+                ######################### Save the vector store to the session state ########################
+                st.session_state.vector_store = vector_store
+                return vector_store
+        else:
+            # Load the vector store from the cache
+            return st.session_state.vector_store
+    else:
+        st.error('No content was found...')
+
+def retrieve_chunks(vector_store, re_written_query):
+    with st.spinner(text=":red[Please wait while we fetch the relevant information...]"):
+        relevant_documents = vector_store.similarity_search_with_score(query=re_written_query, k=5)
+        return relevant_documents
 
 ##############################################################################################################
 ###################### Function for retrieving the relevant chunks from the vector store #####################
